@@ -1,0 +1,33 @@
+name: Linux build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Install build and test dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential p7zip-full nsis
+
+      - name: Build native 7zz
+        run: ./7-zip-build.sh
+
+      - name: Test NSIS script decompilation
+        run: ./tests/smoke-test-linux.sh ./dist/7zz
+
+      - name: Upload Linux package
+        uses: actions/upload-artifact@v6
+        with:
+          name: 7zz-nsis-linux-${{ runner.arch }}
+          path: dist/*.tar.gz
+          if-no-files-found: error

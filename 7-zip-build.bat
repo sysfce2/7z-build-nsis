@@ -120,6 +120,7 @@ if exist "7-Zip-zstd-%zstd_version%" (
 set "Build_Root=%CD%"
 set "APPVEYOR_BUILD_FOLDER=%CD%"
 copy ..\7-zip-patch.sh 7-zip-patch.sh
+copy ..\7-zip-patch-nsis.sh 7-zip-patch-nsis.sh
 copy ..\7-zip-patch-xp.sh 7-zip-patch-xp.sh
 goto :Patch
 

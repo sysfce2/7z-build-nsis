@@ -37,10 +37,14 @@ C/*
 CPP/*
 DOC/*
 7z*-*.*
+!7-zip-build.sh
+!7-zip-patch-nsis.sh
 7-Zip-zstd-*
 *.zip
 *.7z
 *.tar.gz
+/build/
+/dist/
 
 # busybox
 buxybox*
